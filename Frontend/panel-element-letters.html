@@ -1,0 +1,1817 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="assets/img/basic/favicon.ico" type="image/x-icon">
+    <title>BayuSuta</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/app.css">
+    <style>
+        .loader {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #F5F8FA;
+            z-index: 9998;
+            text-align: center;
+        }
+
+        .plane-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+        }
+    </style>
+    <!-- Js -->
+    <!--
+    --- Head Part - Use Jquery anywhere at page.
+    --- http://writing.colin-gourlay.com/safely-using-ready-before-including-jquery/
+    -->
+    <script>
+        (function(w,d,u){
+            w.readyQ=[];
+            w.bindReadyQ=[];
+            function p(x,y){
+                if(x=="ready"){
+                    w.bindReadyQ.push(y);
+                }
+                else{
+                    w.readyQ.push(x);
+                }
+            };
+            var a={ready:p,bind:p};
+            w.$=w.jQuery=function(f){
+                if(f===d||f===u){
+                    return a
+                }
+                else{
+                    p(f)
+                }
+            }
+        })(window,document)
+    </script>
+</head>
+<body class="light">
+<!-- Pre loader -->
+<div id="loader" class="loader">
+    <div class="plane-container">
+        <div class="preloader-wrapper small active">
+            <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+            </div><div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+            </div>
+
+            <div class="spinner-layer spinner-red">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+            </div><div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+            </div>
+
+            <div class="spinner-layer spinner-yellow">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+            </div><div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+            </div>
+
+            <div class="spinner-layer spinner-green">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+            </div><div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="app">
+    <aside class="main-sidebar fixed offcanvas shadow" data-toggle='offcanvas'>
+        <section class="sidebar">
+            <div class="w-80px mt-3 mb-3 ml-3">
+                <img src="assets/img/basic/logo.png" alt="">
+            </div>
+            <div class="relative">
+                <a data-toggle="collapse" href="#userSettingsCollapse" role="button" aria-expanded="false"
+                   aria-controls="userSettingsCollapse" class="btn-fab btn-fab-sm absolute fab-right-bottom fab-top btn-primary shadow1 ">
+                    <i class="icon icon-cogs"></i>
+                </a>
+                <div class="user-panel p-3 light mb-2">
+                    <div>
+                        <div class="float-left image">
+                            <img class="user_avatar" src="assets/img/dummy/u2.png" alt="User Image">
+                        </div>
+                        <div class="float-left info">
+                            <h6 class="font-weight-light mt-2 mb-1">Someone</h6>
+                            <a href="#"><i class="icon-circle text-primary blink"></i> Online</a>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="collapse multi-collapse" id="userSettingsCollapse">
+                        <div class="list-group mt-3 shadow">
+                            <a href="index.html" class="list-group-item list-group-item-action ">
+                                <i class="mr-2 icon-umbrella text-blue"></i>Profile
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action"><i
+                                    class="mr-2 icon-cogs text-yellow"></i>Settings</a>
+                            <a href="#" class="list-group-item list-group-item-action"><i
+                                    class="mr-2 icon-security text-purple"></i>Change Password</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="header"><strong>MAIN NAVIGATION</strong></li>
+                <li>
+                    <a href="#">
+                        <i class="icon icon-plane purple-text s-18"></i>
+                        <span>Flight Data</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="icon icon icon-map-marker blue-text s-18"></i>
+                        <span>Flight Plan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="icon icon-laptop light-green-text s-18"></i>
+                        <span>Simulation</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="icon icon-cogs light-blue-text s-18"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+                <li class="header light mt-3"><strong>LIBRARY DOCUMENTATION</strong></li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="icon icon-documents3 text-blue s-18"></i> <span>Pages</span>
+                        <i class="icon icon-angle-left s-18 pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="#"><i class="icon icon-bug text-red"></i>Error Pages<i
+                                class="icon icon-angle-left s-18 pull-right"></i></a>
+                            <ul class="treeview-menu">
+                                <li><a href="panel-page-404.html"><i class="icon icon-document"></i>404 Page</a>
+                                </li>
+                                <li><a href="panel-page-500.html"><i class="icon icon-document"></i>500 Page<i
+                                        class="icon icon-angle-left s-18 pull-right"></i></a>
+                                </li>
+                                <li><a href="panel-page-error.html"><i class="icon icon-document"></i>420 Page<i
+                                        class="icon icon-angle-left s-18 pull-right"></i></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="icon icon-goals-1 amber-text s-18"></i> <span>Elements</span>
+                        <i class="icon icon-angle-left s-18 pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="panel-element-widgets.html">
+                            <i class="icon icon-widgets amber-text s-14"></i> <span>Widgets</span>
+                        </a>
+                        </li>
+                        <li><a href="panel-element-counters.html">
+                            <i class="icon icon-filter_9_plus amber-text s-14"></i> <span>Counters</span>
+                        </a>
+                        <li><a href="panel-element-buttons.html">
+                            <i class="icon icon-touch_app amber-text s-14"></i> <span>Buttons</span>
+                        </a>
+                        </li>
+                        <li>
+                            <a href="panel-element-typography.html">
+                                <i class="icon icon-text-width amber-text s-14"></i> <span>Typography</span>
+                            </a>
+                        </li>
+                        <li><a href="panel-element-tabels.html">
+                            <i class="icon icon-table amber-text s-14"></i> <span>Tables</span>
+                        </a>
+                        </li>
+                        <li><a href="panel-element-alerts.html">
+                            <i class="icon icon-exclamation-circle amber-text s-14"></i> <span>Alerts</span>
+                        </a>
+                        </li>
+                        <li><a href="panel-element-slider.html"><i class="icon icon-view_carousel amber-text s-14"></i>
+                            <span>Slider</span></a></li>
+                        <li><a href="panel-element-tabs.html"><i class="icon icon-folders2 amber-text s-14"></i>
+                            <span>Tabs</span></a></li>
+                        <li><a href="panel-element-progress-bars.html"><i class="icon icon-folders2 amber-text s-14"></i>
+                            <span>Progress Bars</span></a></li>
+                        <li><a href="panel-element-badges.html"><i class="icon icon-flag7 amber-text s-14"></i>
+                            <span>Badges</span></a></li>
+                        <li><a href="panel-element-preloaders.html"><i class="icon icon-data_usage amber-text s-14"></i>
+                            <span>Preloaders</span></a></li>
+                    </ul>
+                </li>
+                <li class="treeview ">
+                    <a href="#">
+                        <i class="icon icon-wpforms light-green-text s-18 "></i> <span>Forms & Plugins</span>
+                        <i class="icon icon-angle-left s-18 pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="panel-element-forms.html"><i class="icon icon-wpforms light-green-text"></i>Bootstrap
+                            Inputs</a>
+                        </li>
+                        <li><a href="form-jquery-validations.html"><i class="icon icon-note-important light-green-text"></i>
+                            Form Validation (Jquery)</a>
+                        </li>
+                        <li><a href="form-bootstrap-validations.html"><i class="icon icon-note-important light-green-text"></i>
+                            Form Validation (Bootstrap)</a>
+                        </li>
+                        <li><a href="panel-element-editor.html"><i class="icon icon-pen2 light-green-text"></i>Editor</a>
+                        </li>
+                        <li><a href="panel-element-toast.html"><i
+                                class="icon icon-notifications_active light-green-text"></i>Toasts</a>
+                        </li>
+                        <li><a href="panel-element-stepper.html"><i class="icon icon-burst_mode light-green-text"></i>Stepper</a>
+                        </li>
+                        <li><a href="panel-element-date-time-picker.html"><i
+                                class="icon icon-date_range light-green-text"></i>Date Time Picker</a>
+                        </li>
+                        <li><a href="panel-element-color-picker.html"><i class="icon icon-adjust light-green-text"></i>Color
+                            Picker</a>
+                        </li>
+                        <li><a href="panel-element-range-slider.html"><i class="icon icon-space_bar light-green-text"></i>Range
+                            Slider</a>
+                        </li>
+                        <li><a href="panel-element-select2.html"><i
+                                class="icon  icon-one-finger-click light-green-text"></i>Select 2</a>
+                        </li>
+                        <li><a href="panel-element-tags.html"><i class="icon  icon-tags3 light-green-text"></i>Tags</a>
+                        </li>
+                        <li><a href="panel-element-data-tables.html"><i class="icon icon-table light-green-text"></i>Data
+                            Tables</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview"><a href="#">
+                    <i class="icon icon-bar-chart2 pink-text s-18"></i>
+                    <span>Charts</span>
+                    <i class="icon icon-angle-left s-18 pull-right"></i>
+                </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="panel-element-charts-js.html"><i class="icon icon-area-chart pink-text s-14"></i><span>Charts.Js</span></a>
+                        </li>
+                        <li>
+                            <a href="panel-element-morris.html"><i class="icon icon-bubble_chart pink-text s-14"></i>Morris
+                                Charts</a>
+                        </li>
+                        <li>
+                            <a href="panel-element-echarts.html">
+                                <i class="icon icon-bar-chart-o pink-text s-14"></i>Echarts</a>
+                        </li>
+                        <li>
+                            <a href="panel-element-easy-pie-charts.html">
+                                <i class="icon icon-area-chart pink-text s-14"></i>Easy Pie Charts</a>
+                        </li>
+                        <li>
+                            <a href="panel-element-jqvmap.html">
+                                <i class="icon icon-map pink-text s-14"></i>Jqvmap</a>
+                        </li>
+                        <li>
+                            <a href="panel-element-sparklines.html">
+                                <i class="icon icon-line-chart2 pink-text s-14"></i>Sparklines</a>
+                        </li>
+                        <li>
+                            <a href="panel-element-float.html">
+                                <i class="icon icon-pie-chart pink-text s-14"></i>Float Charts</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview"><a href="#">
+                    <i class="icon icon-dialpad blue-text  s-18"></i>
+                    <span>Extra</span>
+                    <i class="icon icon-angle-left s-18 pull-right"></i>
+                </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="panel-element-letters.html">
+                                <i class="icon icon-brightness_auto light-blue-text s-14"></i>
+                                <span>Avatar Placeholders</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="panel-element-icons.html">
+                                <i class="icon icon-camera2 light-blue-text s-14"></i> <span>Icons</span>
+                            </a>
+                        </li>
+                        <li><a href="panel-element-colors.html">
+                            <i class="icon icon-palette light-blue-text s-14"></i> <span>Colors</span>
+                        </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    </aside>
+<div class="page has-sidebar-left">
+    <header class="blue accent-3 relative nav-sticky">
+        <div class="container-fluid text-white">
+            <div class="row p-t-b-10 ">
+                <div class="col">
+                    <h4>
+                        <i class="icon icon-brightness_auto"></i>
+                         Avatars
+                    </h4>
+                </div>
+            </div>
+            <div class="row">
+                <ul class="nav responsive-tab nav-material nav-material-white">
+                    <li>
+                        <a class="nav-link active" href="panel-element-letters.html">
+                            <i class="icon icon-brightness_auto"></i>Avatars</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="panel-element-icons.html">
+                            <i class="icon icon-camera2"></i>Icons</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="panel-element-colors.html">
+                            <i class="icon icon-palette"></i>Colors</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="container-fluid animatedParent animateOnce">
+        <div class="animated fadeInUpShort my-3">
+            <div class="d-flex justify-content-center">
+                <table class="table cell-vertical-align-middle  table-striped table-responsive mb-4">
+                    <tbody>
+                        <tr class="no-b">
+                            <td>
+                                <div class="v">
+                                    <span class="avatar-letter avatar-letter-a avatar-sm"></span>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="avatar-letter avatar-letter-a"></span>
+                            </td>
+                            <td>
+                                <span class="avatar-letter avatar-letter-a avatar-md"></span>
+                            </td>
+                            <td>
+                                <span class="avatar-letter avatar-letter-a avatar-lg"></span>
+                            </td>
+                            <td>
+                                <span class="avatar-letter avatar-letter-a avatar-sm rounded"></span>
+                            </td>
+                            <td>
+                                <span class="avatar-letter avatar-letter-a rounded"></span>
+                            </td>
+                            <td>
+                                <span class="avatar-letter avatar-letter-a avatar-md rounded"></span>
+                            </td>
+                            <td>
+                                <span class="avatar-letter avatar-letter-a avatar-lg rounded"></span>
+                            </td>
+                            <td>
+                                <span class="avatar-letter avatar-letter-a avatar-sm circle"></span>
+                            </td>
+                            <td>
+                                <span class="avatar-letter avatar-letter-a circle"></span>
+                            </td>
+                            <td>
+                                <span class="avatar-letter avatar-letter-a avatar-md circle"></span>
+                            </td>
+                            <td>
+                                <span class="avatar-letter avatar-letter-a avatar-lg circle"></span>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <!-- grid column -->
+                <div class="col-md-6">
+                    <!-- .card -->
+                    <div class="card">
+                        <div class="card-body b-b">
+                            <p class="card-title"> Size Variations </p>
+                            <figure class="avatar avatar-xl">
+                                <img src="assets/img/dummy/u5.png" alt=""> </figure>
+                            <figure class="avatar avatar-lg">
+                                <img src="assets/img/dummy/u5.png" alt=""> </figure>
+                            <figure class="avatar">
+                                <img src="assets/img/dummy/u5.png" alt=""> </figure>
+                            <figure class="avatar avatar-sm">
+                                <img src="assets/img/dummy/u5.png" alt=""> </figure>
+                            <figure class="avatar avatar-xs">
+                                <img src="assets/img/dummy/u5.png" alt=""> </figure>
+                            <hr>
+                            <p class="card-title"> With badge </p>
+                            <figure class="avatar blink">
+                                <img src="assets/img/dummy/u4.png" alt="">
+                                <span class="avatar-badge online"></span>
+                            </figure>
+                            <figure class="avatar">
+                                <img src="assets/img/dummy/u5.png" alt="">
+                                <span class="avatar-badge idle"></span>
+                            </figure>
+                            <figure class="avatar">
+                                <img src="assets/img/dummy/u6.png" alt="">
+                                <span class="avatar-badge busy"></span>
+                            </figure>
+                            <figure class="avatar">
+                                <img src="assets/img/dummy/u7.png" alt="">
+                                <span class="avatar-badge offline"></span>
+                            </figure>
+                            <hr>
+                            <p class="card-title"> Badge indicator </p>
+                            <figure class="avatar avatar-lg">
+                                <img src="assets/img/dummy/u4.png" alt="">
+                                <span class="avatar-badge has-indicator online blink">
+                            <i class="icon icon-check"></i>
+                          </span>
+                            </figure>
+                            <figure class="avatar avatar-lg">
+                                <img src="assets/img/dummy/u5.png" alt="">
+                                <span class="avatar-badge has-indicator idle">
+                            <i class="icon icon-minus"></i>
+                          </span>
+                            </figure>
+                            <figure class="avatar avatar-lg">
+                                <img src="assets/img/dummy/u6.png" alt="">
+                                <span class="avatar-badge has-indicator busy">
+                            <i class="icon icon-times"></i>
+                          </span>
+                            </figure>
+                            <figure class="avatar avatar-lg">
+                                <img src="assets/img/dummy/u7.png" alt="">
+                                <span class="avatar-badge has-indicator offline"></span>
+                            </figure>
+                        </div>
+                        <div class="card-body b-b">
+                            <p class="card-title"> Grouping </p>
+                            <div class="avatar-group">
+                                <figure class="avatar">
+                                    <img src="assets/img/dummy/u4.png" alt=""> </figure>
+                                <figure class="avatar">
+                                    <span class="avatar-letter avatar-letter-l circle"></span>
+                                </figure>
+                                <figure class="avatar">
+                                    <img src="assets/img/dummy/u5.png" alt=""> </figure>
+                                <figure class="avatar">
+                                    <img src="assets/img/dummy/u6.png" alt=""> </figure>
+                                <figure class="avatar">
+                                    <img src="assets/img/dummy/u7.png" alt="">
+                                </figure>
+                                <figure class="avatar">
+                                    <span class="avatar-letter avatar-letter-a circle"></span>
+                                </figure>
+                                <figure class="avatar">
+                                    <span class="avatar-letter avatar-letter-b circle"></span>
+                                </figure>
+                            </div>
+                            <hr>
+                            <p class="card-title"> Anchor </p>
+                            <a href="#" class="avatar">
+                                <img src="assets/img/dummy/u4.png" alt="">
+                                <span class="avatar-badge online"></span>
+                            </a>
+                            <a href="#" class="avatar">
+                                <img src="assets/img/dummy/u5.png" alt="">
+                                <span class="avatar-badge idle"></span>
+                            </a>
+                            <a href="#" class="avatar">
+                                <img src="assets/img/dummy/u6.png" alt="">
+                                <span class="avatar-badge busy"></span>
+                            </a>
+                            <a href="#" class="avatar">
+                                <img src="assets/img/dummy/u7.png" alt="">
+                                <span class="avatar-badge offline"></span>
+                            </a>
+                            <a href="#" class="avatar">
+                                <span class="avatar-letter avatar-letter-b circle"></span>
+                                <span class="avatar-badge offline"></span>
+                            </a>
+                            <hr>
+                            <p class="card-title"> Anchor group </p>
+                            <div class="avatar-group">
+                                <a href="#" class="avatar avatar-lg">
+                                    <img src="assets/img/dummy/u4.png" alt="">
+                                </a>
+                                <a href="#" class="avatar avatar-lg">
+                                    <img src="assets/img/dummy/u5.png" alt="">
+                                </a>
+                                <a href="#" class="avatar avatar-lg">
+                                    <img src="assets/img/dummy/u6.png" alt="">
+                                </a>
+                                <a href="#" class="avatar avatar-lg">
+                                    <img src="assets/img/dummy/u7.png" alt="">
+                                </a>
+                                <a href="#" class="avatar avatar-lg">
+                                    <span class="avatar-letter avatar-letter-b circle avatar-lg"></span>
+                                </a>
+                            </div>
+                            <hr>
+                            <p class="card-title"> Dropdowns </p>
+                            <figure class="avatar avatar-lg dropdown">
+                                <a href="#" data-toggle="dropdown">
+                                    <img src="assets/img/dummy/u4.png" alt="">
+                                    <span class="avatar-badge has-indicator online">
+                              <i class="icon icon-check"></i>
+                            </span>
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a href="#" class="dropdown-item">Online</a>
+                                    <a href="#" class="dropdown-item">Warning</a>
+                                    <a href="#" class="dropdown-item">Busy</a>
+                                    <a href="#" class="dropdown-item">Offline</a>
+                                </div>
+                            </figure>
+                            <figure class="avatar avatar-lg dropdown">
+                                <a href="#" data-toggle="dropdown">
+                                    <img src="assets/img/dummy/u5.png" alt="">
+                                    <span class="avatar-badge has-indicator idle">
+                              <i class="icon icon-minus"></i>
+                            </span>
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a href="#" class="dropdown-item">Online</a>
+                                    <a href="#" class="dropdown-item">Warning</a>
+                                    <a href="#" class="dropdown-item">Busy</a>
+                                    <a href="#" class="dropdown-item">Offline</a>
+                                </div>
+                            </figure>
+                            <figure class="avatar avatar-lg dropdown">
+                                <a href="#" data-toggle="dropdown">
+                                    <img src="assets/img/dummy/u6.png" alt="">
+                                    <span class="avatar-badge has-indicator busy">
+                              <i class="icon icon-times"></i>
+                            </span>
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a href="#" class="dropdown-item">Online</a>
+                                    <a href="#" class="dropdown-item">Warning</a>
+                                    <a href="#" class="dropdown-item">Busy</a>
+                                    <a href="#" class="dropdown-item">Offline</a>
+                                </div>
+                            </figure>
+                            <figure class="avatar avatar-lg dropdown">
+                                <a href="#" data-toggle="dropdown">
+                                    <img src="assets/img/dummy/u7.png" alt="">
+                                    <span class="avatar-badge has-indicator offline">
+                              <i class="icon icon-media-record"></i>
+                            </span>
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a href="#" class="dropdown-item">Online</a>
+                                    <a href="#" class="dropdown-item">Warning</a>
+                                    <a href="#" class="dropdown-item">Busy</a>
+                                    <a href="#" class="dropdown-item">Offline</a>
+                                </div>
+                            </figure>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /grid column -->
+                <!-- grid column -->
+                <div class="col-md-6">
+                    <h3>Documentation</h3>
+                    <hr>
+                    <p>You can use image or letter placeholder for avatar.</p>
+
+                    <div class="avatar">
+                        <span class="avatar-letter avatar-letter-a circle"></span>
+                    </div>
+               <p>
+                   Change last character to change letter <code>avatar-letter-a</code>
+               </p>
+                    <pre class="mt-2"><code>&lt;div class="avatar"&gt;
+&nbsp;&nbsp;&nbsp;&lt;span class="avatar-letter avatar-letter-a circle"&gt;&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+
+                    <figure class="avatar avatar-lg">
+                        <img src="assets/img/dummy/u5.png" alt="">
+                    </figure>
+
+                    <pre class="mt-2"><code>&lt;figure class="avatar avatar-lg"&gt;
+&nbsp;&nbsp;&nbsp;&lt;img src="assets/img/dummy/u5.png" alt=""&gt;
+&lt;/figure&gt;</code></pre>
+
+                </div>
+                <!-- /grid column -->
+            </div>
+            <div class="row my-3">
+                <div class="col-md-4">
+                    <ul class="list-unstyled">
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-a circle"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Alexander Pierce</strong>
+                                        </div>
+                                        <small> alexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-b circle"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Blexander Pierce</strong>
+                                        </div>
+                                        <small> blexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-c circle"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Clexander Pierce</strong>
+                                        </div>
+                                        <small> clexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-d circle"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Dlexander Pierce</strong>
+                                        </div>
+                                        <small> dlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-e circle"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Elexander Pierce</strong>
+                                        </div>
+                                        <small> elexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-f circle"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Flexander Pierce</strong>
+                                        </div>
+                                        <small> flexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-g circle"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Glexander Pierce</strong>
+                                        </div>
+                                        <small> glexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-h circle"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Hlexander Pierce</strong>
+                                        </div>
+                                        <small> hlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-i circle"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Ilexander Pierce</strong>
+                                        </div>
+                                        <small> ilexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-j circle"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Jlexander Pierce</strong>
+                                        </div>
+                                        <small> jlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-k circle"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Klexander Pierce</strong>
+                                        </div>
+                                        <small> klexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-l circle"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Llexander Pierce</strong>
+                                        </div>
+                                        <small> llexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-m circle"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Mlexander Pierce</strong>
+                                        </div>
+                                        <small> mlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-n circle"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Nlexander Pierce</strong>
+                                        </div>
+                                        <small> nlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-o circle"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Olexander Pierce</strong>
+                                        </div>
+                                        <small> olexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-p circle"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Plexander Pierce</strong>
+                                        </div>
+                                        <small> plexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-q circle"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Qlexander Pierce</strong>
+                                        </div>
+                                        <small> qlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-r circle"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Rlexander Pierce</strong>
+                                        </div>
+                                        <small> rlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-s circle"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Slexander Pierce</strong>
+                                        </div>
+                                        <small> slexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-t circle"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Tlexander Pierce</strong>
+                                        </div>
+                                        <small> tlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-u circle"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Ulexander Pierce</strong>
+                                        </div>
+                                        <small> ulexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-v circle"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Vlexander Pierce</strong>
+                                        </div>
+                                        <small> vlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-w circle"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Wlexander Pierce</strong>
+                                        </div>
+                                        <small> wlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-x circle"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Xlexander Pierce</strong>
+                                        </div>
+                                        <small> xlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-y circle"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Ylexander Pierce</strong>
+                                        </div>
+                                        <small> ylexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-z circle"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Zlexander Pierce</strong>
+                                        </div>
+                                        <small> zlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-unstyled">
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-a"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Alexander Pierce</strong>
+                                        </div>
+                                        <small> alexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-b"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Blexander Pierce</strong>
+                                        </div>
+                                        <small> blexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-c"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Clexander Pierce</strong>
+                                        </div>
+                                        <small> clexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-d"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Dlexander Pierce</strong>
+                                        </div>
+                                        <small> dlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-e"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Elexander Pierce</strong>
+                                        </div>
+                                        <small> elexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-f"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Flexander Pierce</strong>
+                                        </div>
+                                        <small> flexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-g"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Glexander Pierce</strong>
+                                        </div>
+                                        <small> glexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-h"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Hlexander Pierce</strong>
+                                        </div>
+                                        <small> hlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-i"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Ilexander Pierce</strong>
+                                        </div>
+                                        <small> ilexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-j"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Jlexander Pierce</strong>
+                                        </div>
+                                        <small> jlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-k"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Klexander Pierce</strong>
+                                        </div>
+                                        <small> klexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-l"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Llexander Pierce</strong>
+                                        </div>
+                                        <small> llexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-m"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Mlexander Pierce</strong>
+                                        </div>
+                                        <small> mlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-n"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Nlexander Pierce</strong>
+                                        </div>
+                                        <small> nlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-o"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Olexander Pierce</strong>
+                                        </div>
+                                        <small> olexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-p"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Plexander Pierce</strong>
+                                        </div>
+                                        <small> plexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-q"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Qlexander Pierce</strong>
+                                        </div>
+                                        <small> qlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-r"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Rlexander Pierce</strong>
+                                        </div>
+                                        <small> rlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-s"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Slexander Pierce</strong>
+                                        </div>
+                                        <small> slexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-t"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Tlexander Pierce</strong>
+                                        </div>
+                                        <small> tlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-u"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Ulexander Pierce</strong>
+                                        </div>
+                                        <small> ulexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-v"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Vlexander Pierce</strong>
+                                        </div>
+                                        <small> vlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-w"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Wlexander Pierce</strong>
+                                        </div>
+                                        <small> wlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-x"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Xlexander Pierce</strong>
+                                        </div>
+                                        <small> xlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-y"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Ylexander Pierce</strong>
+                                        </div>
+                                        <small> ylexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-left">
+                                        <span class="avatar-letter avatar-letter-z"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Zlexander Pierce</strong>
+                                        </div>
+                                        <small> zlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-unstyled">
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-right">
+                                        <span class="avatar-letter avatar-letter-a r-10"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Alexander Pierce</strong>
+                                        </div>
+                                        <small> alexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-right">
+                                        <span class="avatar-letter avatar-letter-b r-10"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Blexander Pierce</strong>
+                                        </div>
+                                        <small> blexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-right">
+                                        <span class="avatar-letter avatar-letter-c r-10"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Clexander Pierce</strong>
+                                        </div>
+                                        <small> clexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-right">
+                                        <span class="avatar-letter avatar-letter-d r-10"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Dlexander Pierce</strong>
+                                        </div>
+                                        <small> dlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-right">
+                                        <span class="avatar-letter avatar-letter-e r-10"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Elexander Pierce</strong>
+                                        </div>
+                                        <small> elexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-right">
+                                        <span class="avatar-letter avatar-letter-f r-10"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Flexander Pierce</strong>
+                                        </div>
+                                        <small> flexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-right">
+                                        <span class="avatar-letter avatar-letter-g r-10"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Glexander Pierce</strong>
+                                        </div>
+                                        <small> glexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-right">
+                                        <span class="avatar-letter avatar-letter-h r-10"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Hlexander Pierce</strong>
+                                        </div>
+                                        <small> hlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-right">
+                                        <span class="avatar-letter avatar-letter-i r-10"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Ilexander Pierce</strong>
+                                        </div>
+                                        <small> ilexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-right">
+                                        <span class="avatar-letter avatar-letter-j r-10"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Jlexander Pierce</strong>
+                                        </div>
+                                        <small> jlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-right">
+                                        <span class="avatar-letter avatar-letter-k r-10"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Klexander Pierce</strong>
+                                        </div>
+                                        <small> klexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-right">
+                                        <span class="avatar-letter avatar-letter-l r-10"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Llexander Pierce</strong>
+                                        </div>
+                                        <small> llexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-right">
+                                        <span class="avatar-letter avatar-letter-m r-10"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Mlexander Pierce</strong>
+                                        </div>
+                                        <small> mlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-right">
+                                        <span class="avatar-letter avatar-letter-n r-10"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Nlexander Pierce</strong>
+                                        </div>
+                                        <small> nlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-right">
+                                        <span class="avatar-letter avatar-letter-o r-10"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Olexander Pierce</strong>
+                                        </div>
+                                        <small> olexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-right">
+                                        <span class="avatar-letter avatar-letter-p r-10"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Plexander Pierce</strong>
+                                        </div>
+                                        <small> plexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-right">
+                                        <span class="avatar-letter avatar-letter-q r-10"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Qlexander Pierce</strong>
+                                        </div>
+                                        <small> qlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-right">
+                                        <span class="avatar-letter avatar-letter-r r-10"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Rlexander Pierce</strong>
+                                        </div>
+                                        <small> rlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-right">
+                                        <span class="avatar-letter avatar-letter-s r-10"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Slexander Pierce</strong>
+                                        </div>
+                                        <small> slexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-right">
+                                        <span class="avatar-letter avatar-letter-t r-10"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Tlexander Pierce</strong>
+                                        </div>
+                                        <small> tlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-right">
+                                        <span class="avatar-letter avatar-letter-u r-10"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Ulexander Pierce</strong>
+                                        </div>
+                                        <small> ulexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-right">
+                                        <span class="avatar-letter avatar-letter-v r-10"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Vlexander Pierce</strong>
+                                        </div>
+                                        <small> vlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-right">
+                                        <span class="avatar-letter avatar-letter-w r-10"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Wlexander Pierce</strong>
+                                        </div>
+                                        <small> wlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-right">
+                                        <span class="avatar-letter avatar-letter-x r-10"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Xlexander Pierce</strong>
+                                        </div>
+                                        <small> xlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-right">
+                                        <span class="avatar-letter avatar-letter-y r-10"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Ylexander Pierce</strong>
+                                        </div>
+                                        <small> ylexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-1">
+                            <div class="card no-b p-3">
+                                <div>
+                                    <div class="image mr-3 float-right">
+                                        <span class="avatar-letter avatar-letter-z r-10"></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>Zlexander Pierce</strong>
+                                        </div>
+                                        <small> zlexander@paper.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="control-sidebar-bg shadow white fixed"></div>
+</div>
+<!--/#app -->
+<script src="assets/js/app.js"></script>
+<script>(function($,d){$.each(readyQ,function(i,f){$(f)});$.each(bindReadyQ,function(i,f){$(d).bind("ready",f)})})(jQuery,document)</script>
+</body>
+</html>
