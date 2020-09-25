@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../assets/img/basic/favicon.ico" type="image/x-icon">
+    <title>Bayusuta</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/css/app.css">
+    <style>
+        .loader {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #F5F8FA;
+            z-index: 9998;
+            text-align: center;
+        }
+
+        .plane-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+        }
+    </style>
+    <!-- Js -->
+    <script>(function(w,d,u){w.readyQ=[];w.bindReadyQ=[];function p(x,y){if(x=="ready"){w.bindReadyQ.push(y);}else{w.readyQ.push(x);}};var a={ready:p,bind:p};w.$=w.jQuery=function(f){if(f===d||f===u){return a}else{p(f)}}})(window,document)</script>
+</head>
+<body class="light sidebar-mini sidebar-collapsex sidebar-expanded-on-hoverx sidebar-collapse">
+<!-- Pre loader -->
+<div id="loader" class="loader">
+    <div class="plane-container">
+        <div class="preloader-wrapper small active">
+            <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+            </div><div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+            </div>
+
+            <div class="spinner-layer spinner-red">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+            </div><div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+            </div>
+
+            <div class="spinner-layer spinner-yellow">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+            </div><div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+            </div>
+
+            <div class="spinner-layer spinner-green">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+            </div><div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="app">
+    <aside class="main-sidebar fixed offcanvas b-r sidebar-tabs" data-toggle='offcanvas'>
+        <div class="sidebar">
+            <div class="d-flex hv-100 align-items-stretch">
+                <div class="indigo text-white">
+                    <div class="nav mt-5 pt-5 flex-column nav-pills" id="v-pills-tab" role="tablist"
+                         aria-orientation="vertical">
+                        <a class="nav-link active" href="" aria-selected="true"><i class="icon-map"></i><h6 style="font-size: 8px">PLAN</h6></a>
+                        <a class="nav-link" href="status.html" aria-selected="false"><i class="icon-plane"></i><h6 style="font-size: 8px">STATUS</h6></a>
+                        <a class="nav-link" href="" aria-selected="false"><i class="icon-refresh"></i><h6 style="font-size: 8px">CALIBRATE</h6></a>
+                        <a class="nav-link" href="" aria-selected="false"><i class="icon-settings2"></i><h6 style="font-size: 8px">SETTING</h6></a>
+                        <a class="nav-link" href="" aria-selected="false"><i class="icon-help"></i><h6 style="font-size: 8px">HELP</h6></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <!--main-->
+    <div class="has-sidebar-left has-sidebar-tabs">
+        <div class="container-fluid relative animatedParent animateOnce my-3">
+            <!--MAP DISINI-->
+        </div>
+    </div>
+    <!--right sidebar-->
+    <aside class="control-sidebar fixed white" style="right: 0; width: auto">
+        <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 695px;">
+            <div class="slimScroll" style="overflow: hidden; width: auto; height: 695px;">
+                <div class="table-responsive">
+                    <table id="recent-orders" class="table table-hover mb-0 ps-container ps-theme-default">
+                        <tbody>
+                        <tr class="bg-light">
+                            <td>
+                                <a class="nav-link" href=""><i class="icon-map-marker text-dark"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="nav-link" href=""><i class="icon-hand-pointer-o text-dark"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="nav-link" href=""><i class="icon-upload text-dark"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="nav-link" href=""><i class="icon-download text-dark"></i></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="slimScrollBar" style="background: rgba(0, 0, 0, 0.95); width: 5px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 407.616px;"></div>
+            <div class="slimScrollRail" style="width: 5px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
+        </div>
+    </aside>
+    <div class="control-sidebar-bg shadow white fixed"></div>
+</div>
+<!--/#app -->
+<script src="../assets/js/app.js"></script>
+
+<script>(function($,d){$.each(readyQ,function(i,f){$(f)});$.each(bindReadyQ,function(i,f){$(d).bind("ready",f)})})(jQuery,document)</script>
+</body>
+</html>
